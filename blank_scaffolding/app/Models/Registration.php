@@ -6,9 +6,9 @@ use DB;
 
 class Registration extends Model
 {
-    function create_account($user_credentials){
-        return $user_credentials;
-    }
+    // function create_account($user_credentials){
+    //     return $user_credentials;
+    // }
     
     function credentials_validation($account, $token){
         $presaved_token = $token;
@@ -93,5 +93,12 @@ class Registration extends Model
             ]);
         }
         return $database_response;
+    }
+
+    function create_account($user_credientials){
+        return DB::table('users')->insert([
+            'email' => $user_credientials->email,
+            'password' => $user_credientials->password
+        ]);
     }
 }
